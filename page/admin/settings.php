@@ -1,0 +1,45 @@
+<?php include 'plugins/navbar.php'; ?>
+<?php include 'plugins/sidebar/admin_bar.php'; ?>
+
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card card-secondary card-outline mt-5">
+            <div class="card-header">
+              <h3 class="card-title text-uppercase"> settings dashboard</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <form id="csvFileForm" method="post" enctype="multipart/form-data">
+                          <input type="file" class="form-control p-1" name="csvFile" accept=".csv, .xls, .xlsx" id="csvFileInput">
+                          <input type="submit" class="form-control mt-2" value="Upload">
+                        </form>
+                      </div>
+                    </div>
+                    <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+                      <table id="table_file" class="table table-striped table-bordered table-hover mt-3">
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<?php
+include 'plugins/footer.php';
+include 'plugins/js/file_upload_script.php';
+?>
