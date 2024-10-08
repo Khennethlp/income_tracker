@@ -10,10 +10,23 @@
             <div class="card-header">
               <h3 class="card-title text-uppercase"> settings dashboard</h3>
             </div>
-
             <div class="card-body">
-              <div class="row">
-                <div class="col-12">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="card bg-success">
+                      <div class="card-body">
+                        <a href="../../template/income_entries.xlsx" class="btn btn-success">Download Template for Income Entries</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="card bg-success">
+                      <div class="card-body">
+                        <a href="../../template/expense_entries.xlsx" class="btn btn-success">Download Template for Expense Entries</a>
+                      </div>
+                    </div>
+                  </div>
                   <div class="col-md-12">
                     <div class="row">
                       <div class="col-md-6 mb-4">
