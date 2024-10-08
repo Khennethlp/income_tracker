@@ -98,35 +98,46 @@ if (!isset($_SESSION['username'])) {
       background-color: #276DBD;
       /* Darker background on hover */
     }
-    .dateRange_btn{
+
+    .dateRange_btn {
       border-radius: 50px;
     }
-    .dateRange_btn:hover{
-     background-color: #f3f3f3;
+
+    .dateRange_btn:hover {
+      background-color: #f3f3f3;
     }
 
-    .btn_confirm{
+    .btn_confirm {
       background: #3765AA !important;
-      color:#ffffff;
-      height:34px;
+      color: #ffffff;
+      height: 34px;
       border-radius: 15px;
-      font-size:15px;
-      font-weight:normal; 
+      font-size: 15px;
+      font-weight: normal;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     }
-    .btn_confirm:hover{
-      color:#f3f3f3;
+
+    .btn_confirm:hover {
+      color: #f3f3f3;
+    }
+
+    .btnSort {
+      border-radius: 15px;
+    }
+
+    .btnSort:hover {
+      background-color: #f3f3f3;
     }
 
     input[type=text],
     input[type=number],
     input[type=date],
     textarea,
-    select{
+    select {
       border-radius: 15px;
     }
 
-    .filter{
+    .filter {
       font-size: 15px;
       color: #847C8D;
       padding: 8px 12px;
@@ -134,8 +145,35 @@ if (!isset($_SESSION['username'])) {
       border-radius: 15px;
       margin-bottom: 5px;
     }
-    .filter:hover{
-      color:#524C57;
+
+    .filter:hover {
+      color: #524C57;
+    }
+
+    /* Style for the button labels */
+    .btn-sort {
+      border-radius: 15px;
+      display: inline-block;
+      padding: 8px 18px;
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      margin-right: 10px;
+      font-size: 13px;
+    }
+
+    /* Active (checked) state */
+    .btn-sort.active {
+      background-color: #007bff;
+      color: #fff;
+      border-color: #007bff;
+    }
+
+    /* Hide the actual checkbox */
+    .sort-checkbox {
+      display: none;
     }
   </style>
 </head>

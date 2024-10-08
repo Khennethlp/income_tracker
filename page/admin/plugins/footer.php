@@ -24,7 +24,35 @@ include '../../modals/filter.php';
 include '../../modals/savings.php';
 
 ?>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+    // Handle ASC checkbox
+    $('#ascCheckbox').on('change', function() {
+      if ($(this).is(':checked')) {
+        $('#descCheckbox').prop('checked', false); // Uncheck the DESC checkbox
+        $('label[for="descCheckbox"]').removeClass('active'); // Remove active class from DESC
+        $('label[for="ascCheckbox"]').addClass('active'); // Add active class to ASC
 
+        console.log('I am checked ASC');
+      } else {
+        $('label[for="ascCheckbox"]').removeClass('active'); // Remove active class from ASC
+      }
+    });
+    
+    // Handle DESC checkbox
+    $('#descCheckbox').on('change', function() {
+      if ($(this).is(':checked')) {
+        $('#ascCheckbox').prop('checked', false); // Uncheck the ASC checkbox
+        $('label[for="ascCheckbox"]').removeClass('active'); // Remove active class from ASC
+        $('label[for="descCheckbox"]').addClass('active'); // Add active class to DESC
+        console.log('I am checked DESC');
+      } else {
+        $('label[for="descCheckbox"]').removeClass('active'); // Remove active class from DESC
+      }
+    });
+
+  });
+</script>
 <!-- jquery -->
 <script src="../../plugins/jquery/dist/jquery.min.js"></script>
 <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
