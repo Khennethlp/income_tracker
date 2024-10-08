@@ -14,6 +14,7 @@
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-3">
+                    <input type="hidden" id="user_id" value="<?= $_SESSION['id']; ?>">
                     <div class="card bg-success">
                       <div class="card-body">
                         <a href="../../template/income_entries.xlsx" class="btn btn-success">Download Template for Income Entries</a>
@@ -34,6 +35,20 @@
                           <input type="file" class="form-control p-1" name="csvFile" accept=".csv, .xls, .xlsx" id="csvFileInput">
                           <input type="submit" class="form-control mt-2" value="Upload">
                         </form>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <select name="" id="entry_category" class="form-control" style="display: none;">
+                            <option value="" disabled selected>Select Entry Category</option>
+                            <option value="income_entries">Income Entries</option>
+                            <option value="expense_entries">Expense Entries</option>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-block active" id="uploadBtn" style="display: none;">Upload</button>
+                        </div>
                       </div>
                     </div>
                     <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">

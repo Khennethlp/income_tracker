@@ -78,6 +78,7 @@ function readExcelFile($filename) {
 if (isset($_FILES['csvFile'])) {
     $file = $_FILES['csvFile'];
 
+
     // Check if the file was uploaded
     if ($file['error'] === UPLOAD_ERR_OK) {
         // Move the uploaded file to a temporary location
