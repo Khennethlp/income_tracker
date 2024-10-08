@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <span><b>Amount:</b></span>
-                        <input type="number" id="expense_amount" class="form-control mb-2" placeholder="" autocomplete="off" required>
+                        <input type="text" id="expense_amount" class="form-control mb-2" onblur="formatToPeso(this)" onfocus="removeFormatting(this)" placeholder="" autocomplete="off" required>
                     </div>
                     <div class="col-sm-12">
                         <span><b>Category:</b></span>

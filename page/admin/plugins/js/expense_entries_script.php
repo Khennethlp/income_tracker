@@ -2,10 +2,28 @@
     document.addEventListener('DOMContentLoaded', function() {
         expense_table();
         balances();
-      
+
     });
 
-    
+    function formatToPeso(input) {
+        let value = input.value.replace(/[₱,]/g, '');
+
+        if (!isNaN(value) && value !== '') {
+            let formatted = parseFloat(value).toLocaleString('en-PH', {
+                style: 'currency',
+                currency: 'PHP',
+            });
+
+            input.value = formatted;
+        } else {
+            input.value = '';
+        }
+    }
+
+    function removeFormatting(input) {
+        input.value = input.value.replace(/[₱,]/g, '');
+    }
+
     const clear = () => {
         $('#user_id').val('');
         $('#expense_amount').val('');
@@ -47,17 +65,29 @@
         var expense_amount = document.getElementById('expense_amount').value;
         var expense_category = document.getElementById('expense_category').value;
 
+        var clean_expense_amount = expense_amount.replace(/[₱,]/g, ''); // Clean expense amount
+        var new_amount = parseFloat(clean_expense_amount);
+
+        if (expense_amount == '' || expense_category == '') {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Amount and Category must not be empty.',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            return;
+        }
+
         $.ajax({
             type: "POST",
             url: "../../process/admin/expense_entries.php",
             data: {
                 method: 'expense_entries',
                 user_id: user_id,
-                amount: expense_amount,
+                amount: new_amount,
                 category: expense_category,
             },
             success: function(response) {
-
                 if (response == 'success') {
                     Swal.fire({
                         icon: 'success',

@@ -21,6 +21,7 @@ if (!isset($_SESSION['username'])) {
   <link rel="stylesheet" href="../../dist/css/font.min.css">
 
   <link rel="stylesheet" href="../../plugins/DataTables/datatables.min.css">
+  <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
   <link rel="stylesheet" href="../../dist/css/datatable/dataTables.dataTables.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">

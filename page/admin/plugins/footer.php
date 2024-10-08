@@ -1,18 +1,19 @@
 <footer class="main-footer text-sm">
-    Developed by: <em>Khennethlp</em> 
-    <div class="float-right d-none d-sm-inline-block">
-      <strong>Copyright &copy;
-        <script>   
+  Developed by: <em>Khennethlp</em>
+  <div class="float-right d-none d-sm-inline-block">
+    <strong>Copyright &copy;
+      <script>
         var currentYear = new Date().getFullYear();
         if (currentYear !== 2024) {
           document.write("2024 - " + currentYear);
         } else {
           document.write(currentYear);
-        };</script>. 
-        </strong>
-      All rights reserved.
-    </div>
-  </footer>
+        };
+      </script>.
+    </strong>
+    All rights reserved.
+  </div>
+</footer>
 <?php
 //MODALS
 include '../../modals/logout_modal.php';
@@ -27,6 +28,9 @@ include '../../modals/savings.php';
 <!-- jquery -->
 <script src="../../plugins/jquery/dist/jquery.min.js"></script>
 <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- toastr -->
+<script src="../../plugins/toastr/toastr.min.js"></script>
 
 <!-- datatable -->
 <script src="../../plugins/DataTables/datatables.min.js"></script>
@@ -45,4 +49,5 @@ include '../../modals/savings.php';
 <script src="../../dist/js/session.js"></script>
 
 </body>
+
 </html>
