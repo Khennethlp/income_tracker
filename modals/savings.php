@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-12">
                         <label for="">Amount</label>
-                        <input type="number" class="form-control" name="" id="savings_amount">
+                        <input type="text" class="form-control" onblur="formatToPeso(this)" onfocus="removeFormatting(this)" name="" id="savings_amount" autocomplete="off">
                     </div>
                 </div>
                 <br>

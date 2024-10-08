@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-sm-12">
                         <span><b>Amount:</b></span>
-                        <input type="number" id="income_amount" class="form-control mb-2" placeholder="" autocomplete="off" required>
+                        <input type="text" id="income_amount" class="form-control mb-2" placeholder="" onblur="formatToPeso(this)" onfocus="removeFormatting(this)" autocomplete="off" required>
                     </div>
                     <div class="col-sm-12">
                         <span><b>Category:</b></span>
