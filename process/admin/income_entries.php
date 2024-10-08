@@ -4,7 +4,7 @@ require '../conn.php';
 $method = $_POST['method'];
 
 if ($method == 'load_income') {
-    $sql = "SELECT id, user_id, category_id, amount, date_from, date_to, category, notes FROM income_entries ORDER BY id DESC";
+    $sql = "SELECT id, user_id, amount, date_from, date_to, category, notes FROM income_entries ORDER BY id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $c = 0;
@@ -15,7 +15,7 @@ if ($method == 'load_income') {
         echo '<tr>';
         echo '<td>' . $c . '</td>';
         echo '<td>' . '₱ ' . number_format($i['amount'], 2) . '</td>';
-       
+
         $categories = explode(',', $i['category']);
         $badges = '';
 
@@ -89,12 +89,19 @@ if ($method == 'amount_saved') {
             // If not, create a new savings record
             $sql = "INSERT INTO savings (user_id, amount) VALUES (:user_id, :savings)";
         }
-        
+
         // Prepare and execute the appropriate statement
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->bindParam(':savings', $savings, PDO::PARAM_STR);
         $stmt->execute();
+
+        // Insert into savings_logs table to record this transaction
+        $sql_logs = "INSERT INTO savings_logs (user_id, amount) VALUES (:user_id, :savings)";
+        $stmt_logs = $conn->prepare($sql_logs);
+        $stmt_logs->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt_logs->bindParam(':savings', $savings, PDO::PARAM_STR);
+        $stmt_logs->execute();
 
         // Update the balance by subtracting the savings
         $sql_update_balance = "UPDATE balance SET amount = amount - :savings WHERE user_id = :user_id";
@@ -104,7 +111,7 @@ if ($method == 'amount_saved') {
         $stmt->execute();
 
         $conn->commit();
-        
+
         echo 'success';
     } catch (Exception $e) {
         $conn->rollBack();

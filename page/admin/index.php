@@ -51,7 +51,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="card" style="border-radius: 15px; max-height: 400px; overflow-y:auto;">
+                <div class="card" style="border-radius: 15px; max-height: 550px; overflow-y:auto;">
                   <table class="table table-condensed table-hover">
                     <thead>
                       <th>No.</th>
