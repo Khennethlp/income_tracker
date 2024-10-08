@@ -32,7 +32,7 @@
                           <div class="pl-2">
                             <h2 id="available_balance"></h2>
                             <h6>Savings</h6>
-                            &nbsp;
+                            <a href="#" data-target="#deposit" data-toggle="modal">Deposit</a>
                             
                           </div>
                         <!-- </div> -->

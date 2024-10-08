@@ -22,6 +22,7 @@ include '../../modals/income_entries.php';
 include '../../modals/expense_entries.php';
 include '../../modals/filter.php';
 include '../../modals/savings.php';
+include '../../modals/deposit.php';
 
 ?>
 <script>
