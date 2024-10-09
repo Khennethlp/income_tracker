@@ -190,8 +190,8 @@ if (!isset($_SESSION['username'])) {
 <div id="preloader" class="preloader flex-column justify-content-center align-items-center">
   <img class="" src="../../dist/img/loader.gif" alt="logo" height="60" width="60">
 </div>
-
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
+<!-- sidebar-collapse -->
+<body class="hold-transition sidebar-mini layout-fixed ">
   <div class="wrapper">
     <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #F5F5F5;">
       <ul class="navbar-nav">
