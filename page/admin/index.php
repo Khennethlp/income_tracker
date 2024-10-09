@@ -47,7 +47,7 @@
                       <label for="">Income Entries</label>
                     </div>
                     <div class="col-md-1">
-                      <i class="fas fa-filter filter" data-toggle="modal" data-target="#filter" id="Filter" style="cursor: pointer;">Filter</i>
+                      <i class="fas fa-filter filter" data-toggle="modal" data-target="#income_filter" id="Filter" style="cursor: pointer;">Filter</i>
                     </div>
                   </div>
                 </div>

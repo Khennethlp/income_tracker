@@ -20,7 +20,8 @@ include '../../modals/logout_modal.php';
 include '../../modals/timeout.php';
 include '../../modals/income_entries.php';
 include '../../modals/expense_entries.php';
-include '../../modals/filter.php';
+include '../../modals/income_filter.php';
+include '../../modals/expense_filter.php';
 include '../../modals/savings.php';
 include '../../modals/deposit.php';
 

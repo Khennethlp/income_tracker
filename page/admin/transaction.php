@@ -25,8 +25,11 @@
                 <br>
                 <div class="col-md-12">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-11">
                       <label for="">Expense Entries</label>
+                    </div>
+                    <div class="col-md-1">
+                      <i class="fas fa-filter filter" data-toggle="modal" data-target="#expense_filter" id="Filter" style="cursor: pointer;">Filter</i>
                     </div>
                   </div>
                 </div>
