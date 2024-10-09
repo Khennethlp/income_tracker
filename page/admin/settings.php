@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-secondary card-outline mt-5">
+          <div class="card mt-2" style="border-radius: 15px;">
             <div class="card-header">
               <h3 class="card-title text-uppercase"> settings dashboard</h3>
             </div>
