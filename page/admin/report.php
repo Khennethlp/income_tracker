@@ -7,11 +7,9 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="card mt-2" style="border-radius: 15px;">
-            <div class="card-header">
-              <h3 class="card-title text-uppercase"> reports dashboard</h3>
-            </div>
             <div class="card-body">
-              <div class="col-md-12">
+              <label for="">Reports Dashboard</label>
+              <div class="col-md-12 mt-3">
                 <div class="row">
                   <?php
                   require '../../process/conn.php';
