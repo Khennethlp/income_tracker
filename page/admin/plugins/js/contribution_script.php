@@ -102,7 +102,17 @@
                     contribution_table();
                     $('#contributions').modal('hide');
                     clear();
-                } else if (response == 'failed') {
+                } else if (response == 'failed to update balance') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Sorry, something went wrong with your balance.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                    $('#contributions').modal('hide');
+                    clear();
+                } else if (response == 'failed to insert contributions') {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Cannot submit your contributions. Please, Try again.',

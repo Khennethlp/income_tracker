@@ -35,14 +35,32 @@ if ($method == 'contribution_entry') {
     $month = $_POST['month'];
     $year = date('Y');
 
-    $sql = "INSERT INTO contributions (user_id, sss, philhealth, pagibig, month, year) VALUES ('$user_id', '$sss', '$philhealth', '$pagibig', '$month', '$year')";
+    // Calculate the total contributions
+    $total_contributions = $sss + $philhealth + $pagibig;
+
+    // Insert the contributions
+    $sql = "INSERT INTO contributions (user_id, sss, philhealth, pagibig, month, year) VALUES (:user_id, :sss, :philhealth, :pagibig, :month, :year)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':sss', $sss);
+    $stmt->bindParam(':philhealth', $philhealth);
+    $stmt->bindParam(':pagibig', $pagibig);
+    $stmt->bindParam(':month', $month);
+    $stmt->bindParam(':year', $year);
 
-    if($stmt){
-        echo 'success';
-    }else{
-        echo 'failed';
+    if ($stmt->execute()) {
+        // Decrease the balance based on total contributions
+        $update_balance_sql = "UPDATE balance SET amount = amount - :total_contributions WHERE id = :user_id";
+        $update_stmt = $conn->prepare($update_balance_sql);
+        $update_stmt->bindParam(':total_contributions', $total_contributions);
+        $update_stmt->bindParam(':user_id', $user_id);
+        
+        if ($update_stmt->execute()) {
+            echo 'success';
+        } else {
+            echo 'failed to update balance';
+        }
+    } else {
+        echo 'failed to insert contributions';
     }
-
 }
