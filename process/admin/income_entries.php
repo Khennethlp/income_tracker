@@ -47,7 +47,7 @@ if ($method == 'balances') {
         $amount = $balance['amount'];
         echo '<a href="#" onclick="addToSavings(\'' . htmlspecialchars($user_id) . '~!~' . htmlspecialchars($amount) . '\');" class="text-md" id="add_to_savings" data-target="#savings" data-toggle="modal">add to savings</a>';
     } else {
-        echo 'No balance found for this user.';
+        echo '₱ 0.00';
     }
 }
 

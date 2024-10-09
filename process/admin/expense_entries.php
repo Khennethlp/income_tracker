@@ -43,7 +43,7 @@ if ($method == 'balances') {
         echo '₱ ' . number_format($balance['amount'], 2);
         
     } else {
-        echo 'No balance found.';
+        echo '₱ 0.00';
     }
 }
 
