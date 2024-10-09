@@ -25,7 +25,6 @@
     }
 
     const clear = () => {
-        $('#user_id').val('');
         $('#expense_amount').val('');
         $('#expense_category').val('');
     }
@@ -61,56 +60,86 @@
     }
 
     const expense_entries = () => {
-        var user_id = document.getElementById('user_id').value;
-        var expense_amount = document.getElementById('expense_amount').value;
-        var expense_category = document.getElementById('expense_category').value;
+    var user_id = document.getElementById('user_id').value.trim(); // Trim to remove whitespace
+    var expense_amount = document.getElementById('expense_amount').value.trim();
+    var expense_category = document.getElementById('expense_category').value.trim();
 
-        var clean_expense_amount = expense_amount.replace(/[₱,]/g, ''); // Clean expense amount
-        var new_amount = parseFloat(clean_expense_amount);
+    var clean_expense_amount = expense_amount.replace(/[₱,]/g, ''); // Clean expense amount
+    var new_amount = parseFloat(clean_expense_amount);
 
-        if (expense_amount == '' || expense_category == '') {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Amount and Category must not be empty.',
-                showConfirmButton: false,
-                timer: 1000
-            });
-            return;
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "../../process/admin/expense_entries.php",
-            data: {
-                method: 'expense_entries',
-                user_id: user_id,
-                amount: new_amount,
-                category: expense_category,
-            },
-            success: function(response) {
-                if (response == 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Amount saved!',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-
-                    balances();
-                    expense_table();
-                    $('#add_expense').modal('hide');
-                    clear();
-                } else if (response == 'failed') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Amount failed to save!',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-
-                    $('#add_income').modal('hide');
-                }
-            }
+    // Validate if the fields are empty
+    if (user_id === '') {
+        Swal.fire({
+            icon: 'warning',
+            title: 'No user ID provided.',
+            showConfirmButton: false,
+            timer: 1500
         });
+        return; // Stop execution if no user_id
     }
+
+    if (expense_amount === '' || isNaN(new_amount)) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Invalid or empty amount provided.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return; // Stop execution if no amount or invalid amount
+    }
+
+    if (expense_category === '') {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Category must not be empty.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return; // Stop execution if no category
+    }
+
+    // Proceed with AJAX request if validation passes
+    $.ajax({
+        type: "POST",
+        url: "../../process/admin/expense_entries.php",
+        data: {
+            method: 'expense_entries',
+            user_id: user_id,
+            amount: new_amount,
+            category: expense_category,
+        },
+        success: function(response) {
+            if (response == 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Expense saved successfully!',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+
+                // Call functions to update balances and table, clear inputs, and hide modal
+                balances();
+                expense_table();
+                $('#add_expense').modal('hide');
+                clear();
+            } else if (response == 'failed') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to save expense!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        },
+        error: function(xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'An error occurred. Please try again.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+};
+
 </script>

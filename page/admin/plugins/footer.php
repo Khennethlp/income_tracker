@@ -24,8 +24,10 @@ include '../../modals/income_filter.php';
 include '../../modals/expense_filter.php';
 include '../../modals/savings.php';
 include '../../modals/deposit.php';
+include '../../modals/monthly_details.php';
 
 ?>
+
 <script>
  document.addEventListener('DOMContentLoaded', function() {
     // Handle ASC checkbox

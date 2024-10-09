@@ -28,7 +28,7 @@
                     <div class="card mx-2 card-success card-outline">
                       <div class="card-body">
                         <h4><i class="fas fa-calendar text-lg"></i>&nbsp; <?= $month . ' ' . $year ?></h4>
-                      <button class="btn btn-success btn-block mt-3" id="monthly_details_btn" data-month="<?= $month; ?>" data-year="<?= $year; ?>">View</button>
+                      <button class="btn btn-success btn-block mt-3 monthly_details_btn" data-month="<?= $month; ?>" data-year="<?= $year; ?>" data-toggle="modal" data-target="#monthly_deets">View</button>
                       </div>
                     </div>
                   <?php
