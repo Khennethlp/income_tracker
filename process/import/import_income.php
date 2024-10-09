@@ -8,14 +8,14 @@ if (isset($_POST['tableData'])) {
 
     if (!empty($tableData)) {
         try {
-            $conn->beginTransaction();
+            $conn->beginTransaction(); // Start transaction
 
             if ($entry_category == 'income_entries') {
                 $sql = "INSERT INTO income_entries (user_id, amount, category, date_from, date_to, notes) 
-                    VALUES (:user_id, :amount, :category, :date_from, :date_to, :notes)";
+                        VALUES (:user_id, :amount, :category, :date_from, :date_to, :notes)";
             } else if ($entry_category == 'expense_entries') {
                 $sql = "INSERT INTO expense_entries (user_id, amount, category)  
-                   VALUES (:user_id, :amount, :category)";
+                        VALUES (:user_id, :amount, :category)";
             }
 
             $stmt = $conn->prepare($sql);
@@ -28,23 +28,31 @@ if (isset($_POST['tableData'])) {
                 $stmt->bindParam(':amount', $amount, PDO::PARAM_STR);
                 $stmt->bindParam(':category', $category, PDO::PARAM_STR);
 
+                // For income entries, handle the date formatting
                 if ($entry_category == 'income_entries') {
-                    $date_from = $row[2];
-                    $date_to = $row[3];
+                    // Assuming date_from and date_to are in Y-m-d format from the CSV
+                    $date_from_raw = $row[2];
+                    $date_to_raw = $row[3];
                     $notes = $row[4];
 
+                    // Convert the dates into "Year Month Day" format
+                    $date_from = DateTime::createFromFormat('Y-m-d', $date_from_raw);
+                    $date_to = DateTime::createFromFormat('Y-m-d', $date_to_raw);
+
+                    // Bind the formatted dates
                     $stmt->bindParam(':date_from', $date_from, PDO::PARAM_STR);
                     $stmt->bindParam(':date_to', $date_to, PDO::PARAM_STR);
                     $stmt->bindParam(':notes', $notes, PDO::PARAM_STR);
                 }
 
-                $stmt->execute();
+                $stmt->execute(); // Execute the prepared statement
             }
 
-            $conn->commit();
+            $conn->commit(); // Commit the transaction
             echo 'success';
+
         } catch (Exception $e) {
-            $conn->rollBack();
+            $conn->rollBack(); // Roll back the transaction if something fails
             echo 'failed: ' . $e->getMessage();
         }
     } else {
@@ -53,3 +61,4 @@ if (isset($_POST['tableData'])) {
 } else {
     echo 'Invalid request.';
 }
+?>
