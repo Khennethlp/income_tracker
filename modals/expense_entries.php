@@ -11,6 +11,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <input type="hidden" id="user_id" value="<?= $_SESSION['id']; ?>">
                     <div class="col-sm-12">
                         <span><b>Amount:</b></span>
                         <input type="text" id="expense_amount" class="form-control mb-2" onblur="formatToPeso(this)" onfocus="removeFormatting(this)" placeholder="" autocomplete="off" required>

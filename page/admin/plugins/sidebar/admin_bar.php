@@ -49,6 +49,19 @@
               </a>
         </li>
         <li class="nav-item">
+          <?php if ($_SERVER['REQUEST_URI'] == "/income/page/admin/contribution.php") { ?>
+            <a href="contribution.php" class="nav-link active">
+            <?php } else { ?>
+              <a href="contribution.php" class="nav-link">
+              <?php } ?>
+              <!-- <i class="nav-icon fa fa-tachometer-alt"></i> -->
+              <img src="../../dist/img/Fidget.gif" height="25" width="25" >&nbsp;&nbsp;&nbsp;
+              <p style="margin-left: 30px;">
+                Contributions
+              </p>
+              </a>
+        </li>
+        <li class="nav-item">
           <?php if ($_SERVER['REQUEST_URI'] == "/income/page/admin/report.php") { ?>
             <a href="report.php" class="nav-link active">
             <?php } else { ?>
