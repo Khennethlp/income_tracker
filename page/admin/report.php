@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-secondary card-outline mt-5">
+          <div class="card mt-2" style="border-radius: 15px;">
             <div class="card-header">
               <h3 class="card-title text-uppercase"> reports dashboard</h3>
             </div>
@@ -14,38 +14,37 @@
               <div class="col-md-12">
                 <div class="row">
                   <?php
-                  // Get the current year
-                  $currentYear = date('Y');
-                  // Create an array for the months
-                  $months = [
-                    'January', 'February', 'March', 'April', 'May', 'June',
-                    'July', 'August', 'September', 'October', 'November', 'December'
-                  ];
-                  // Loop through each month to create a card
-                  foreach ($months as $month) {
+                  require '../../process/conn.php';
+
+                  $sql = "SELECT DISTINCT DATE_FORMAT(date_from, '%M') AS month, YEAR(date_from) AS year FROM income_entries ORDER BY date_from";
+                  $stmt = $conn->prepare($sql);
+                  $stmt->execute();
+                  $monthsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                  foreach ($monthsData as $data) {
+                    $month = $data['month'];
+                    $year = $data['year'];
                   ?>
                     <div class="card mx-2 card-success card-outline">
                       <div class="card-body">
-                        <h4><i class="fas fa-calendar text-lg"></i>&nbsp; <?= $month  . ' '. $currentYear ?></h4>
+                        <h4><i class="fas fa-calendar text-lg"></i>&nbsp; <?= $month . ' ' . $year ?></h4>
+                      <button class="btn btn-success btn-block mt-3" id="monthly_details_btn" data-month="<?= $month; ?>" data-year="<?= $year; ?>">View</button>
                       </div>
                     </div>
                   <?php
                   }
                   ?>
-
-
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 </div>
 
 
 <?php
 include 'plugins/footer.php';
-include 'plugins/js/datatable_script.php';
+include 'plugins/js/monthly_details_script.php';
 ?>
