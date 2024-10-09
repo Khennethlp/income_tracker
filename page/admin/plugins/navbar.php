@@ -175,6 +175,14 @@ if (!isset($_SESSION['username'])) {
     .sort-checkbox {
       display: none;
     }
+
+    .active-nav .icon-image {
+      filter: brightness(0) invert(1);
+    }
+
+    .icon-image {
+      filter: none;/
+    }
   </style>
 </head>
 
