@@ -72,6 +72,64 @@ if ($method == 'savings') {
     }
 }
 
+if ($method == 'deposit') {
+    $user_id = $_POST['user_id'];
+    $deposit = $_POST['deposit'];
+
+    try {
+        // Begin transaction
+        $conn->beginTransaction();
+
+        // Retrieve current savings amount
+        $sql_get_savings = "SELECT amount FROM savings WHERE user_id = :user_id";
+        $stmt_get_savings = $conn->prepare($sql_get_savings);
+        $stmt_get_savings->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt_get_savings->execute();
+        $savings_data = $stmt_get_savings->fetch(PDO::FETCH_ASSOC);
+
+        if ($savings_data) {
+            $current_savings = $savings_data['amount'];
+
+            // Check if the deposit is not greater than the available savings
+            if ($deposit > $current_savings) {
+                echo 'not enough savings';
+                $conn->rollBack(); // Rollback if deposit exceeds savings
+                exit;
+            }
+
+            // Update balance by adding the deposit amount
+            $sql_update_balance = "UPDATE balance SET amount = amount + :deposit WHERE user_id = :user_id";
+            $stmt_balance = $conn->prepare($sql_update_balance);
+            $stmt_balance->bindParam(':deposit', $deposit, PDO::PARAM_STR);
+            $stmt_balance->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt_balance->execute();
+
+            // Update savings by subtracting the deposit amount
+            $sql_update_savings = "UPDATE savings SET amount = amount - :deposit WHERE user_id = :user_id";
+            $stmt_savings = $conn->prepare($sql_update_savings);
+            $stmt_savings->bindParam(':deposit', $deposit, PDO::PARAM_STR);
+            $stmt_savings->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt_savings->execute();
+
+            // Commit the transaction
+            $conn->commit();
+
+            if ($stmt_balance && $stmt_savings) {
+                echo 'success';
+            } else {
+                echo 'failed';
+            }
+        } else {
+            echo 'no savings found';
+            $conn->rollBack(); // Rollback if no savings record found
+        }
+    } catch (Exception $e) {
+        // Rollback transaction in case of error
+        $conn->rollBack();
+        echo 'failed: ' . $e->getMessage();
+    }
+}
+
 if ($method == 'amount_saved') {
     $user_id = $_POST['user_id'];
     $savings = $_POST['savings'];

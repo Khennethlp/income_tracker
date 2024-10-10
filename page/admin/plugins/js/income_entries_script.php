@@ -81,77 +81,6 @@
 
     }
 
-
-
-    const amount_saved = () => {
-        var user_id = document.getElementById('user_id').value;
-        var current_balance = document.getElementById('current_balance_to_save').value;
-        var amount = document.getElementById('savings_amount').value;
-
-        var clean_balance = current_balance.replace(/[₱,]/g, '');
-        var clean_amount = amount.replace(/[₱,]/g, '');
-
-        var new_balance = parseFloat(clean_balance); // Convert to float
-        var new_amount = parseFloat(clean_amount);   // Convert to float
-
-        if (clean_amount === '' || isNaN(new_amount)){
-            Swal.fire({
-                icon: 'warning',
-                title: 'Amount should not be empty.',
-                showConfirmButton: false,
-                timer: 1000
-            });
-            return;
-        }
-
-         if (new_amount > new_balance) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops! Insufficient balance.',
-                showConfirmButton: false,
-                timer: 1000
-            });
-            return;
-        } 
-            $.ajax({
-                type: "POST",
-                url: "../../process/admin/income_entries.php",
-                data: {
-                    method: 'amount_saved',
-                    user_id: user_id,
-                    savings: clean_amount
-                },
-                success: function(response) {
-                    if (response == 'success') {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Amount saved!',
-                            showConfirmButton: false,
-                            timer: 1000
-                        });
-                        console.log(new_amount);
-
-                        balances();
-                        savings();
-                        income_table();
-                        clear();
-                        $('#savings').modal('hide');
-                    } else if (response == 'failed') {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Amount failed to save!',
-                            showConfirmButton: false,
-                            timer: 1000
-                        });
-
-                        $('#savings').modal('hide');
-                    }
-                }
-            });
-        
-
-    }
-
     const balances = () => {
         var user_id = document.getElementById('user_id').value;
 
@@ -184,6 +113,138 @@
         });
     }
 
+    const deposit = () => {
+        var user_id = document.getElementById('user_id').value;
+        var savings_to_deposit = document.getElementById('current_balance_from_savings').value;
+        var deposit_amount = document.getElementById('deposit_amount').value;
+
+        var clean_balance = deposit_amount.replace(/[₱,]/g, '');
+        var clean_amount = clean_balance.replace(/[₱,]/g, '');
+
+        $.ajax({
+            type: "POST",
+            url: "../../process/admin/income_entries.php",
+            data: {
+                method: 'deposit',
+                user_id: user_id,
+                deposit: clean_amount,
+            },
+            success: function(response) {
+
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Amount deposited successfully!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                    balances();
+                    savings();
+                    income_table();
+                    clear();
+                    $('#deposit').modal('hide');
+                } else if (response == 'failed') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Failed to deposit amount.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                } else if (response == 'not enough savings') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Not enough savings to cover the deposit.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                } else if (response == 'no savings found') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'No savings found.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Something went wrong.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            }
+        });
+    }
+
+    const amount_saved = () => {
+        var user_id = document.getElementById('user_id').value;
+        var current_balance = document.getElementById('current_balance_to_save').value;
+        var amount = document.getElementById('savings_amount').value;
+
+        var clean_balance = current_balance.replace(/[₱,]/g, '');
+        var clean_amount = amount.replace(/[₱,]/g, '');
+
+        var new_balance = parseFloat(clean_balance); // Convert to float
+        var new_amount = parseFloat(clean_amount); // Convert to float
+
+        if (clean_amount === '' || isNaN(new_amount)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Amount should not be empty.',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            return;
+        }
+
+        if (new_amount > new_balance) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops! Insufficient balance.',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "../../process/admin/income_entries.php",
+            data: {
+                method: 'amount_saved',
+                user_id: user_id,
+                savings: clean_amount
+            },
+            success: function(response) {
+                if (response == 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Amount saved!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    console.log(new_amount);
+
+                    balances();
+                    savings();
+                    income_table();
+                    clear();
+                    $('#savings').modal('hide');
+                } else if (response == 'failed') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Amount failed to save!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                    $('#savings').modal('hide');
+                }
+            }
+        });
+
+
+    }
 
     const income_entries = () => {
         var user_id = document.getElementById('user_id').value;
@@ -194,9 +255,9 @@
         var income_notes = document.getElementById('income_notes').value;
 
         var clean_balance = income_amount.replace(/[₱,]/g, '');
-        var new_amount = parseFloat(clean_balance);   // Convert to float
+        var new_amount = parseFloat(clean_balance); // Convert to float
 
-        if(income_amount == '' || income_category == '' || income_date_from == '' || income_date_to == ''){
+        if (income_amount == '' || income_category == '' || income_date_from == '' || income_date_to == '') {
             Swal.fire({
                 icon: 'warning',
                 title: 'Fields should not be empty.',

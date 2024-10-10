@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer ">
                 <div class="col-md-8">
-                    <button class="btn btn-block btn_confirm" onclick="">Confirm</button>
+                    <button class="btn btn-block btn_confirm" onclick="deposit();">Confirm</button>
                 </div>
             </div>
         </div>
