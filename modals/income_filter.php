@@ -24,9 +24,9 @@
                         <label for="category">Category</label>
                         <select class="form-control" id="category">
                             <option value=""></option>
-                            <option value="">Work</option>
-                            <option value="">Freelance</option>
-                            <option value="">Business</option>
+                            <option value="work">Work</option>
+                            <option value="freelance">Freelance</option>
+                            <option value="business">Business</option>
                         </select>
                     </div>
                     <div class="col-md-12 p-2 mb-2">
@@ -45,7 +45,7 @@
             </div>
             <div class="modal-footer ">
                 <div class="col-md-5">
-                    <button class="btn btn-block btn_confirm" onclick="">Confirm</button>
+                    <button class="btn btn-block btn_confirm" onclick="filter();">Confirm</button>
                 </div>
             </div>
         </div>

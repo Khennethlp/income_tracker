@@ -80,5 +80,6 @@
 
 <?php
 include 'plugins/js/income_entries_script.php';
+include 'plugins/js/filter_script.php';
 include 'plugins/footer.php';
 ?>
