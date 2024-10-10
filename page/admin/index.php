@@ -30,9 +30,9 @@
                       <div class="row">
                         <!-- <div class="col-md-7"> -->
                           <div class="pl-2">
-                            <h2 id="available_balance"></h2>
-                            <h6>Savings</h6>
-                            <a href="#" data-target="#deposit" data-toggle="modal">Deposit</a>
+                            <h2 id="available_savings"></h2>
+                            <h6 id=""></h6>
+                            
                             
                           </div>
                         <!-- </div> -->

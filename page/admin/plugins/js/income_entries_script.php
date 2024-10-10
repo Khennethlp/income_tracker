@@ -64,6 +64,23 @@
         $('#new_balance').val(amount);
     }
 
+    const depositAddToBalance = (param) => {
+        var data = param.split('~!~');
+        var user_id = data[0];
+        var amount = parseFloat(data[1]); // Now you can access the amount
+
+        let current_balance = amount.toLocaleString('en-PH', {
+            style: 'currency',
+            currency: 'PHP'
+        });
+
+        console.log('User ID:', user_id);
+        console.log('current_balance:', current_balance);
+
+        $('#current_balance_from_savings').val(current_balance);
+
+    }
+
 
 
     const amount_saved = () => {
@@ -162,7 +179,7 @@
                 user_id: user_id,
             },
             success: function(response) {
-                document.getElementById("available_balance").innerHTML = response;
+                document.getElementById("available_savings").innerHTML = response;
             }
         });
     }

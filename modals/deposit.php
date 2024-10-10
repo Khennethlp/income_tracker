@@ -12,11 +12,11 @@
                     <input type="hidden" id="user_id" value="<?= $_SESSION['id']; ?>">
                     <div class="col-md-12 mb-2">
                         <label for="">Current Savings</label>
-                        <input type="text" class="form-control" id="current_balance_to_save" readonly>
+                        <input type="text" class="form-control" id="current_balance_from_savings" readonly>
                     </div>
                     <div class="col-md-12">
                         <label for="">Amount</label>
-                        <input type="text" class="form-control" onblur="formatToPeso(this)" onfocus="removeFormatting(this)" name="" id="savings_amount" autocomplete="off">
+                        <input type="text" class="form-control" onblur="formatToPeso(this)" onfocus="removeFormatting(this)" name="" id="deposit_amount" autocomplete="off">
                     </div>
                 </div>
                 <br>

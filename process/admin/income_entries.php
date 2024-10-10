@@ -62,6 +62,10 @@ if ($method == 'savings') {
     if (!empty($count)) {
         foreach ($count as $c) {
             echo '₱ ' . number_format($c['amount'], 2);
+            echo '<h6 class="mt-2">Savings</h6>';
+
+            $amount = $c['amount'];
+            echo '<a href="#" onclick="depositAddToBalance(\'' . htmlspecialchars($user_id) . '~!~' . htmlspecialchars($amount) . '\');" class="text-md" id="deposit_to_balance" data-target="#deposit" data-toggle="modal">deposit</a>';
         }
     } else {
         echo '<h2>₱ 0.00</h2>';
