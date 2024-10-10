@@ -121,6 +121,15 @@
         var clean_balance = deposit_amount.replace(/[₱,]/g, '');
         var clean_amount = clean_balance.replace(/[₱,]/g, '');
 
+        if(deposit_amount == ''){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Sorry, we\'re not able to granted your deposit right now.',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
         $.ajax({
             type: "POST",
             url: "../../process/admin/income_entries.php",
@@ -136,7 +145,7 @@
                         icon: 'success',
                         title: 'Amount deposited successfully!',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
 
                     balances();
@@ -149,28 +158,28 @@
                         icon: 'warning',
                         title: 'Failed to deposit amount.',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
                 } else if (response == 'not enough savings') {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Not enough savings to cover the deposit.',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
                 } else if (response == 'no savings found') {
                     Swal.fire({
                         icon: 'warning',
                         title: 'No savings found.',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Something went wrong.',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
                 }
             }
@@ -193,7 +202,7 @@
                 icon: 'warning',
                 title: 'Amount should not be empty.',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 3000
             });
             return;
         }
@@ -203,7 +212,7 @@
                 icon: 'warning',
                 title: 'Oops! Insufficient balance.',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 3000
             });
             return;
         }
@@ -221,7 +230,7 @@
                         icon: 'success',
                         title: 'Amount saved!',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
                     console.log(new_amount);
 
@@ -235,7 +244,7 @@
                         icon: 'error',
                         title: 'Amount failed to save!',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
 
                     $('#savings').modal('hide');
@@ -262,7 +271,7 @@
                 icon: 'warning',
                 title: 'Fields should not be empty.',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 3000
             });
             return;
         }
@@ -286,7 +295,7 @@
                         icon: 'success',
                         title: 'Amount saved!',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
 
                     balances();
@@ -299,7 +308,7 @@
                         icon: 'error',
                         title: 'Amount failed to save!',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
 
                     $('#add_income').modal('hide');

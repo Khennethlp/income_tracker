@@ -73,7 +73,7 @@
             icon: 'warning',
             title: 'No user ID provided.',
             showConfirmButton: false,
-            timer: 1500
+            timer: 3000
         });
         return; // Stop execution if no user_id
     }
@@ -83,7 +83,7 @@
             icon: 'warning',
             title: 'Invalid or empty amount provided.',
             showConfirmButton: false,
-            timer: 1500
+            timer: 3000
         });
         return; // Stop execution if no amount or invalid amount
     }
@@ -93,7 +93,7 @@
             icon: 'warning',
             title: 'Category must not be empty.',
             showConfirmButton: false,
-            timer: 1500
+            timer: 3000
         });
         return; // Stop execution if no category
     }
@@ -114,7 +114,7 @@
                     icon: 'success',
                     title: 'Expense saved successfully!',
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
 
                 // Call functions to update balances and table, clear inputs, and hide modal
@@ -127,7 +127,7 @@
                     icon: 'error',
                     title: 'Failed to save expense!',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 3000
                 });
             }
         },
@@ -136,7 +136,7 @@
                 icon: 'error',
                 title: 'An error occurred. Please try again.',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
             });
         }
     });

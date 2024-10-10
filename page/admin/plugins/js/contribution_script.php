@@ -96,7 +96,7 @@
                         icon: 'success',
                         title: 'Contributions saved!',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
 
                     contribution_table();
@@ -107,7 +107,7 @@
                         icon: 'warning',
                         title: 'Sorry, something went wrong with your balance.',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
 
                     $('#contributions').modal('hide');
@@ -117,7 +117,7 @@
                         icon: 'warning',
                         title: 'Cannot submit your contributions. Please, Try again.',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
 
                     $('#contributions').modal('hide');
@@ -127,7 +127,7 @@
                         icon: 'error',
                         title: 'Something went wrong.',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000
                     });
                 }
             }
