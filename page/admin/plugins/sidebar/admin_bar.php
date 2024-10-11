@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-light-primary sidebar-light-primary elevation-0" id="sidebar">
   <!-- Brand Logo -->
   <a href="index.php" class="brand-link" style="background-color: #306BAC; color: #fff;">
-    <img src="../../dist/img/sapiens.png" alt="Logo" class="brand-image img-circle " style="opacity: 100">
-    <span class="brand-text font-weight-light text-uppercase">&ensp; <?=$title;?></span>
+    <img src="../../dist/img/sapiens.png" alt="Logo" class="brand-image img-circle">
+    <span class="brand-text font-weight-strong text-uppercase">&ensp; <?=$title;?></span>
   </a>
 
   <!-- Sidebar -->
@@ -10,10 +10,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="../../dist/img/user.png" alt="User Image">
+        <img src="../../dist/img/user.png" class="" height="25" width="25" alt="User Image">
       </div>
       <div class="info">
-        <a href="index.php" class="d-block text-uppercase"><?= htmlspecialchars($_SESSION['name']); ?></a>
+        <a href="index.php" class="d-block text-uppercase" style="margin-left: 25px;"><?= htmlspecialchars($_SESSION['name']); ?></a>
       </div>
     </div>
 
