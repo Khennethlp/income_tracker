@@ -1,6 +1,4 @@
-const myChart_pie = document.getElementById('myChart_pie');
 const myChart_bar = document.getElementById('myChart_bar');
-const myChart_radar = document.getElementById('myChart_radar');
 
 new Chart(myChart_pie, {
   type: 'pie',
