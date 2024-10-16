@@ -20,6 +20,10 @@
                         <span><b>Category:</b></span>
                         <input type="text" id="expense_category" class="form-control mb-2" placeholder="e.g. Foods, Clothes etc." autocomplete="off" required>
                     </div>
+                    <div class="col-sm-12">
+                        <label for="">Custom Date:</label>
+                        <input type="date" name="custom_date" id="custom_date" class="form-control">
+                    </div>
                 </div>
                 <br>
             </div>

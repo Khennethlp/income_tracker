@@ -62,7 +62,8 @@
     const expense_entries = () => {
     var user_id = document.getElementById('user_id').value.trim(); // Trim to remove whitespace
     var expense_amount = document.getElementById('expense_amount').value.trim();
-    var expense_category = document.getElementById('expense_category').value.trim();
+    var expense_category = document.getElementById('expense_category').value.trim(); 
+    var custom_date = document.getElementById('custom_date').value.trim(); 
 
     var clean_expense_amount = expense_amount.replace(/[₱,]/g, ''); // Clean expense amount
     var new_amount = parseFloat(clean_expense_amount);
@@ -107,6 +108,7 @@
             user_id: user_id,
             amount: new_amount,
             category: expense_category,
+            custom_date: custom_date,
         },
         success: function(response) {
             if (response == 'success') {

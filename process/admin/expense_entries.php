@@ -26,7 +26,11 @@ if ($method == 'load_expense') {
         }
 
         echo '<td>' . $badges . '</td>';
-        echo '<td>' . date('Y/M/d', strtotime($i['created_at'])) . '</td>';
+        if(!empty($i['custom_date'])){
+            echo '<td>' . date('Y/M/d', strtotime($i['custom_date'])) . '</td>';
+        }else{
+            echo '<td>' . date('Y/M/d', strtotime($i['created_at'])) . '</td>';
+        }
         echo '</tr>';
     }
 }
@@ -51,15 +55,17 @@ if ($method == 'expense_entries') {
     $user_id = $_POST['user_id'];
     $amount = $_POST['amount'];
     $category = $_POST['category'];
+    $custom_date = $_POST['custom_date'];
 
     // Insert into expense_entries table
-    $sql_expense = "INSERT INTO expense_entries (user_id, amount, category)  
-                   VALUES (:user_id, :amount, :category)";
+    $sql_expense = "INSERT INTO expense_entries (user_id, amount, category, custom_date)  
+                   VALUES (:user_id, :amount, :category, :custom_date)";
     $stmt = $conn->prepare($sql_expense);
     $stmt->execute([
         ':user_id' => $user_id,
         ':amount' => $amount,
         ':category' => $category,
+        ':custom_date' => $custom_date,
     ]);
 
     // Check if user_id already exists in balance table
