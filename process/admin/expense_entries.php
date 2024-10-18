@@ -8,7 +8,9 @@ $currentMonth = $currentDate->format('F');
 // $month = 'October';
 
 if ($method == 'load_expense') {
-    $sql = "SELECT * FROM expense_entries WHERE DATE_FORMAT(created_at, '%M') = '$currentMonth' ORDER BY id DESC";
+    $user_id = $_POST['user_id'];
+
+    $sql = "SELECT * FROM expense_entries WHERE DATE_FORMAT(created_at, '%M') = '$currentMonth' AND user_id = '$user_id' ORDER BY id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $c = 0;
@@ -16,6 +18,18 @@ if ($method == 'load_expense') {
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($rows as $i) {
         $c++;
+
+        $id = $i['id'];
+        $amount = $i['amount'];
+        $category = $i['category'];
+
+        $date = "";
+        if (!empty($i['custom_date'])) {
+            $date = date('Y-m-d', strtotime($i['custom_date'])); // Format date to ensure it's properly structured
+        } else {
+            $date = date('Y-m-d', strtotime($i['created_at'])); // Format date from created_at
+        }
+
         echo '<tr>';
         echo '<td>' . $c . '</td>';
         echo '<td>' . '₱ ' . number_format($i['amount'], 2) . '</td>';
@@ -35,6 +49,10 @@ if ($method == 'load_expense') {
         }else{
             echo '<td>' . date('Y/M/d', strtotime($i['created_at'])) . '</td>';
         }
+        echo '<td>
+        <a class="btn" data-toggle="modal" data-target="#update_expense" onclick=updateExpense(\'' . htmlspecialchars($id) . '~!~' . htmlspecialchars($user_id) . '~!~' . htmlspecialchars($amount) . '~!~' . htmlspecialchars($category) .  '~!~' . htmlspecialchars($date) . '\');><i class="fas fa-edit text-info cursor-hand"></i></a>
+        <a class="btn"><i class="fas fa-trash text-secondary cursor-hand"></i></a>
+        </td>';
         echo '</tr>';
     }
 }
@@ -93,4 +111,24 @@ if ($method == 'expense_entries') {
     } else {
         echo 'failed';
     }
+}
+
+if($method == 'update_expense_entries'){
+    // to be continued...
+    $id = $_POST['id'];
+    $user_id = $_POST['user_id'];
+    $amount = $_POST['amount'];
+    $category = $_POST['category'];
+    $custom_date = $_POST['custom_date'];
+
+    $query = "UPDATE expense_entries SET amount = '$amount', category = '$category', custom_date = '$custom_date' WHERE user_id = '$user_id' AND id= '$id'";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+
+    if($stmt){
+        echo 'success';
+    }else{
+        echo 'failed';
+    }
+
 }

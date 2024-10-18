@@ -13,10 +13,10 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= $title; ?> - Admin</title>
+  <title><?= $title; ?></title>
 
 
-  <link rel="icon" href="../../dist/img/coffee.gif" type="image/x-icon" />
+  <link rel="icon" href="../../dist/img/sapiens.png" type="image/x-icon" />
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="../../dist/css/font.min.css">
 
@@ -182,6 +182,10 @@ if (!isset($_SESSION['username'])) {
 
     .icon-image {
       filter: none;/
+    }
+
+    .cursor-hand{
+      cursor: pointer;
     }
   </style>
 </head>

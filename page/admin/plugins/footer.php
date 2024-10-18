@@ -26,6 +26,7 @@ include '../../modals/savings.php';
 include '../../modals/deposit.php';
 include '../../modals/monthly_details.php';
 include '../../modals/contribution.php';
+include '../../modals/update_expense.php';
 
 ?>
 

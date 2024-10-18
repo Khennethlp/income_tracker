@@ -40,6 +40,7 @@
                       <th>Amount</th>
                       <th>Category</th>
                       <th>Date</th>
+                      <th>Actions</th>
                     </thead>
                     <tbody id="expense_table"></tbody>
                   </table>
