@@ -3,8 +3,12 @@ require '../conn.php';
 
 $method = $_POST['method'];
 
+$currentDate = new DateTime();
+$currentMonth = $currentDate->format('F');
+// $month = 'October';
+
 if ($method == 'load_expense') {
-    $sql = "SELECT * FROM expense_entries ORDER BY id DESC";
+    $sql = "SELECT * FROM expense_entries WHERE DATE_FORMAT(created_at, '%M') = '$currentMonth' ORDER BY id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $c = 0;
